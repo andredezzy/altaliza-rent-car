@@ -37,3 +37,5 @@ E:\Programming\GitHub Projects\Personal Projects\altaliza-rent-car\api\AltalizaR
 E:\Programming\GitHub Projects\Personal Projects\altaliza-rent-car\api\AltalizaRentCar.API\AltalizaRentCar.API\obj\Debug\net5.0\AltalizaRentCar.API.pdb
 E:\Programming\GitHub Projects\Personal Projects\altaliza-rent-car\api\AltalizaRentCar.API\AltalizaRentCar.API\obj\Debug\net5.0\AltalizaRentCar.API.genruntimeconfig.cache
 E:\Programming\GitHub Projects\Personal Projects\altaliza-rent-car\api\AltalizaRentCar.API\AltalizaRentCar.API\bin\Debug\net5.0\BCrypt.Net-Next.dll
+E:\Programming\GitHub Projects\Personal Projects\altaliza-rent-car\api\AltalizaRentCar.API\AltalizaRentCar.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.DynamicLinq.dll
+E:\Programming\GitHub Projects\Personal Projects\altaliza-rent-car\api\AltalizaRentCar.API\AltalizaRentCar.API\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll

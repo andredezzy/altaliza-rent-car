@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Configuration;
 
 namespace AltalizaRentCar.API.Data
 {
