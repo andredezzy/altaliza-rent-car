@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace AltalizaRentCar.API.Controllers
@@ -34,6 +35,21 @@ namespace AltalizaRentCar.API.Controllers
         public Character Create(Character character)
         {
             return _service.Create(character);
+        }
+
+        [HttpPost]
+        [Route("RentVehicle")]
+        public Character RentVehicle(CharacterRentVehicleModel model)
+        {
+            return _service.RentVehicle(model.CharacterId, model.VehicleId);
+        }
+
+        public class CharacterRentVehicleModel {
+            [Required]
+            public Guid CharacterId { get; set; }
+
+            [Required]
+            public Guid VehicleId { get; set; }
         }
     }
 }

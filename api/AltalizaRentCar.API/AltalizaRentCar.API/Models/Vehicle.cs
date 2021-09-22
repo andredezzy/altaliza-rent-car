@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace AltalizaRentCar.API.Models
 {
@@ -28,14 +29,15 @@ namespace AltalizaRentCar.API.Models
         public string Imagem { get; set; }
 
         [Required]
-        public string Price_1Days { get; set; }
+        public double Price_1Days { get; set; }
 
         [Required]
-        public string Price_7Days { get; set; }
+        public double Price_7Days { get; set; }
 
         [Required]
-        public string Price_15Days { get; set; }
+        public double Price_15Days { get; set; }
 
-        public ICollection<CharacterVehicles> CharacterVehicles { get; set; }
+        [JsonIgnore]
+        public ICollection<CharacterVehicle> CharacterVehicles { get; set; }
     }
 }

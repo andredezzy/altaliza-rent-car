@@ -15,11 +15,11 @@ namespace AltalizaRentCar.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "longtext", nullable: true)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Username = table.Column<string>(type: "longtext", nullable: true)
+                    Username = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "longtext", nullable: true)
+                    Password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -33,9 +33,9 @@ namespace AltalizaRentCar.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "longtext", nullable: true)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: true)
+                    Description = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -50,17 +50,14 @@ namespace AltalizaRentCar.API.Migrations
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     CategoryId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "longtext", nullable: true)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Stock = table.Column<int>(type: "int", nullable: false),
-                    Imagem = table.Column<string>(type: "longtext", nullable: true)
+                    Imagem = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Price_1Days = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Price_7Days = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Price_15Days = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Price_1Days = table.Column<double>(type: "double", nullable: false),
+                    Price_7Days = table.Column<double>(type: "double", nullable: false),
+                    Price_15Days = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,7 +72,7 @@ namespace AltalizaRentCar.API.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "CharacterVehicles",
+                name: "CharacterVehicle",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -84,15 +81,15 @@ namespace AltalizaRentCar.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CharacterVehicles", x => x.Id);
+                    table.PrimaryKey("PK_CharacterVehicle", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CharacterVehicles_Characters_CharacterId",
+                        name: "FK_CharacterVehicle_Characters_CharacterId",
                         column: x => x.CharacterId,
                         principalTable: "Characters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CharacterVehicles_Vehicles_VehicleId",
+                        name: "FK_CharacterVehicle_Vehicles_VehicleId",
                         column: x => x.VehicleId,
                         principalTable: "Vehicles",
                         principalColumn: "Id",
@@ -101,13 +98,13 @@ namespace AltalizaRentCar.API.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CharacterVehicles_CharacterId",
-                table: "CharacterVehicles",
+                name: "IX_CharacterVehicle_CharacterId",
+                table: "CharacterVehicle",
                 column: "CharacterId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CharacterVehicles_VehicleId",
-                table: "CharacterVehicles",
+                name: "IX_CharacterVehicle_VehicleId",
+                table: "CharacterVehicle",
                 column: "VehicleId");
 
             migrationBuilder.CreateIndex(
@@ -119,7 +116,7 @@ namespace AltalizaRentCar.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CharacterVehicles");
+                name: "CharacterVehicle");
 
             migrationBuilder.DropTable(
                 name: "Characters");

@@ -20,6 +20,6 @@ namespace AltalizaRentCar.API.Models
         [Required]
         public string Password { get; set; }
 
-        public ICollection<CharacterVehicles> CharacterVehicles { get; set; }
+        public ICollection<CharacterVehicle> CharacterVehicles { get; set; }
     }
 }

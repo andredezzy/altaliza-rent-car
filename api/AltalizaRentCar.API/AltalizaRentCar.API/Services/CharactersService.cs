@@ -2,7 +2,10 @@
 using AltalizaRentCar.API.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AltalizaRentCar.API.Services
 {
@@ -19,7 +22,9 @@ namespace AltalizaRentCar.API.Services
 
         public IEnumerable<Character> FindAll()
         {
-            return _context.Characters;
+            return _context.Characters
+                .Include(character => character.CharacterVehicles)
+                .ThenInclude(characterVehicle => characterVehicle.Vehicle);
         }
 
         public Character Create(Character character)
@@ -33,6 +38,37 @@ namespace AltalizaRentCar.API.Services
             _context.SaveChanges();
 
             return entity.Entity;
+        }
+
+        public Character RentVehicle(Guid characterId, Guid vehicleId)
+        {
+            Character character = _context.Characters.Find(characterId);
+
+            if (character == null) {
+                throw new Exception("Character not found");
+            }
+
+            Vehicle vehicle = _context.Vehicles.Find(vehicleId);
+
+            if (vehicle == null)
+            {
+                throw new Exception("Vehicle not found");
+            }
+
+            CharacterVehicle characterVehicle = new CharacterVehicle {
+                CharacterId = characterId,
+                VehicleId = vehicleId
+            };
+
+            if (character.CharacterVehicles == null) {
+                character.CharacterVehicles = new List<CharacterVehicle>();
+            }
+
+            character.CharacterVehicles.Add(characterVehicle);
+
+            _context.SaveChanges();
+
+            return character;
         }
     }
 

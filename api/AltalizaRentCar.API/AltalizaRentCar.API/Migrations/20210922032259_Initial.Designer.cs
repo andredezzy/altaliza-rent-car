@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AltalizaRentCar.API.Migrations
 {
     [DbContext(typeof(AltalizaContext))]
-    [Migration("20210919192409_Initial")]
+    [Migration("20210922032259_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,12 +26,15 @@ namespace AltalizaRentCar.API.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -39,7 +42,7 @@ namespace AltalizaRentCar.API.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("AltalizaRentCar.API.Models.CharacterVehicles", b =>
+            modelBuilder.Entity("AltalizaRentCar.API.Models.CharacterVehicle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +60,7 @@ namespace AltalizaRentCar.API.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("CharacterVehicles");
+                    b.ToTable("CharacterVehicle");
                 });
 
             modelBuilder.Entity("AltalizaRentCar.API.Models.Vehicle", b =>
@@ -70,19 +73,21 @@ namespace AltalizaRentCar.API.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Imagem")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Price_15Days")
-                        .HasColumnType("longtext");
+                    b.Property<double>("Price_15Days")
+                        .HasColumnType("double");
 
-                    b.Property<string>("Price_1Days")
-                        .HasColumnType("longtext");
+                    b.Property<double>("Price_1Days")
+                        .HasColumnType("double");
 
-                    b.Property<string>("Price_7Days")
-                        .HasColumnType("longtext");
+                    b.Property<double>("Price_7Days")
+                        .HasColumnType("double");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -101,9 +106,11 @@ namespace AltalizaRentCar.API.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -111,7 +118,7 @@ namespace AltalizaRentCar.API.Migrations
                     b.ToTable("VehicleCategory");
                 });
 
-            modelBuilder.Entity("AltalizaRentCar.API.Models.CharacterVehicles", b =>
+            modelBuilder.Entity("AltalizaRentCar.API.Models.CharacterVehicle", b =>
                 {
                     b.HasOne("AltalizaRentCar.API.Models.Character", "Character")
                         .WithMany("CharacterVehicles")

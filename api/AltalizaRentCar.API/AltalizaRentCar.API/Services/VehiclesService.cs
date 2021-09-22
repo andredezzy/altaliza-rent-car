@@ -26,8 +26,11 @@ namespace AltalizaRentCar.API.Services
         public Vehicle Create(Vehicle vehicle)
         {
             VehicleCategory category = _context.VehicleCategories.Where(category => category.Name == vehicle.Category.Name).FirstOrDefault();
-
-            vehicle.Category = category;
+            
+            if (category != null)
+            {
+                vehicle.Category = category;
+            }
 
             EntityEntry<Vehicle> entity = _context.Vehicles.Add(vehicle);
 
