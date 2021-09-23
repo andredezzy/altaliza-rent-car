@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  # Application
+
+  postgresql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: docker
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: altaliza
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+
+volumes:
+  mysql_data:
+    driver: local
